@@ -1,7 +1,7 @@
 import mysql.connector
 
 def insertProduct(name, price, imageUrl, description):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "INSERT INTO Products(name,price,imageUrl,description) VALUES (%s,%s,%s,%s)" 
@@ -11,16 +11,16 @@ def insertProduct(name, price, imageUrl, description):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt eklendi')
-        print(f'son eklenen kaydın id: {cursor.lastrowid}')
+        print(f'{cursor.rowcount} record(s) added')
+        print(f'Last record id: {cursor.lastrowid}')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
+        print('DB Connection Closed.')
 
 def insertProducts(list):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "INSERT INTO Products(name,price,imageUrl,description) VALUES (%s,%s,%s,%s)" 
@@ -30,16 +30,16 @@ def insertProducts(list):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt eklendi')
-        print(f'son eklenen kaydın id: {cursor.lastrowid}')
+        print(f'{cursor.rowcount} record(s) added')
+        print(f'Last record id: {cursor.lastrowid}')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
+        print('DB Connection Closed.')
 
 def getProducts():
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     cursor.execute("Select * From Products Order By name, price")
@@ -49,13 +49,13 @@ def getProducts():
         for product in result:
             print(f'id: {product[0]} name: {product[1]} price: {product[2]}')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
-
+        print('DB Connection Closed.')
+        
 def getProductById(id):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "Select * From Products Where id=%s"
@@ -77,12 +77,12 @@ def updateProduct(id, name, price):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt güncellendi')
+        print(f'{cursor.rowcount} record(s) updated')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
+        print('DB Connection Closed.')
 
 def deleteProduct(id):
     connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
@@ -94,13 +94,12 @@ def deleteProduct(id):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt silindi')
+        print(f'{cursor.rowcount} record(s) deleted')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
-
+        print('DB Connection Closed.')
 
 deleteProduct(5)
 getProducts()
