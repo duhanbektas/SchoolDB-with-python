@@ -27,9 +27,9 @@ class DbManager:
 
         try:
             self.connection.commit()
-            print(f'{self.cursor.rowcount} tane kayıt eklendi.')
+            print(f'{self.cursor.rowcount} record(s) updated.')
         except mysql.connector.Error as err:
-            print('hata:', err)
+            print('Error:', err)
 
     def getClasses(self):
         sql = "select * from class"
@@ -60,7 +60,7 @@ class DbManager:
 
         try:
             self.connection.commit()
-            print(f'{self.cursor.rowcount} tane kayıt eklendi.')
+            print(f'{self.cursor.rowcount} record(s) updated.')
         except mysql.connector.Error as err:
             print('hata:', err)
 
@@ -71,7 +71,7 @@ class DbManager:
 
         try:
             self.connection.commit()
-            print(f'{self.cursor.rowcount} tane kayıt güncellendi.')
+            print(f'{self.cursor.rowcount} record(s) updated.')
         except mysql.connector.Error as err:
             print('hata:', err) 
 
@@ -81,6 +81,6 @@ class DbManager:
 
     def __del__(self):
         self.connection.close()
-        print('db silindi')
+        print('DB deleted')
     
    
