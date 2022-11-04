@@ -68,7 +68,7 @@ def getProductById(id):
     print(f'id: {result[0]} name: {result[1]} price: {result[2]}')
 
 def updateProduct(id, name, price):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "Update products Set name= %s, price= %s where id= %s"
@@ -85,7 +85,7 @@ def updateProduct(id, name, price):
         print('DB Connection Closed.')
 
 def deleteProduct(id):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "delete from products where id=%s"
