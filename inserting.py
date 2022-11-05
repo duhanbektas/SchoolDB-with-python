@@ -1,7 +1,7 @@
 import mysql.connector
 
 def insertProduct(name, price, imageUrl, description):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "INSERT INTO Products(name,price,imageUrl,description) VALUES (%s,%s,%s,%s)" 
@@ -11,17 +11,17 @@ def insertProduct(name, price, imageUrl, description):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt eklendi')
-        print(f'son eklenen kaydın id: {cursor.lastrowid}')
+        print(f'{cursor.rowcount} record(s) added')
+        print(f'Last record id: {cursor.lastrowid}')
     except mysql.connector.Error as err:
-        print('hata:', err)
+        print('Error:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
+        print('DB connection closed.')
 
 
 def insertProducts(list):
-    connection = mysql.connector.connect(host="localhost", user = "root", password="mysql1234", database="node_app")
+    connection = mysql.connector.connect(host="localhost", user = "root", password="password", database="node_app")
     cursor = connection.cursor()
 
     sql = "INSERT INTO Products(name,price,imageUrl,description) VALUES (%s,%s,%s,%s)" 
@@ -31,28 +31,28 @@ def insertProducts(list):
 
     try:
         connection.commit()   
-        print(f'{cursor.rowcount} tane kayıt eklendi')
-        print(f'son eklenen kaydın id: {cursor.lastrowid}')
+        print(f'{cursor.rowcount} record(s) added')
+        print(f'Last record id: {cursor.lastrowid}')
     except mysql.connector.Error as err:
         print('hata:', err)
     finally:
         connection.close()
-        print('database bağlantısı kapandı.')
+        print('DB connection closed.')
 
 
 
 list = []
 while True:
-    name = input('ürün adı: ')
-    price = float(input('ürün fiyatı: '))
-    imageUrl = input('ürün resim adı: ')
-    description = input('ürün açıklaması: ')
+    name = input('product name: ')
+    price = float(input('product price: '))
+    imageUrl = input('product image: ')
+    description = input('product description: ')
 
     list.append((name, price, imageUrl, description))
 
-    result = input('devam etmek istiyor musunuz? (e/h)')
-    if result == 'h':
-        print('Kayıtlarınız veritabanına aktarılıyor...')
+    result = input('Continue? (y/n):')
+    if result == 'n':
+        print('Your entries are passing on to Database')
         print(list)
         insertProducts(list)
         break
